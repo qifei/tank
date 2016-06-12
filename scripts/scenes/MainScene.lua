@@ -485,7 +485,6 @@ function MainScene:ctor()
 		:align(display.CENTER,320,60)
 		:addTo(self)
 		:onButtonClicked(function()
-			self:unscheduleUpdate()
 			myTank:move(-1)
 		end)
 
@@ -609,7 +608,7 @@ function MainScene:createPlayground()
 	tank2 = Tank:new({angle=270, x=214, y=750, speed=14, step=2})
 	tank3 = Tank:new({angle=270, x=384, y=750, speed=18, step=3})
 	tank4 = Tank:new({angle=270, x=554, y=750, speed=22, step=4})
-	--tank5 = Tank:new({angle=90, x=300, y=70})
+	--tank5 = Tank:new({angle=90, x=300, y=70, speed=12})
 	tank5 = Tank:new({angle=90, x=280, y=600, speed=12})
 
 	myTank = tank5
@@ -690,8 +689,8 @@ function MainScene:update()
 				
 			end
 
-			for m=1,48 do
-				local b = blocks[m]
+			for m, block in pairs(blocks) do
+				local b = block
 				local bx = b.x-20
 				local by = b.y-20
 				local bRect = CCRect(bx, by, 40, 40)
